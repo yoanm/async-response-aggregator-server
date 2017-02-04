@@ -1,0 +1,41 @@
+{
+  "name": "async-response-aggregator-server",
+  "version": "0.1.0",
+  "author": "Yoanm <yoanm@users.noreply.github.com>",
+  "license": "GPL-3.0",
+  "licenses": [
+    {
+      "type": "GPL-3.0",
+      "url": "https://github.com/yoanm/async-response-aggregator-server/blob/master/LICENSE"
+    }
+  ],
+  "scripts": {
+    "start": "node index.js",
+    "test": "./node_modules/.bin/mocha --reporter spec",
+    "codestyle": "./node_modules/.bin/eslint -c .eslintrc.json .",
+    "coverage-clover": "./node_modules/.bin/babel-node ./node_modules/istanbul/lib/cli cover node_modules/mocha/bin/_mocha --report clover",
+    "coverage": "./node_modules/.bin/babel-node ./node_modules/istanbul/lib/cli cover node_modules/mocha/bin/_mocha --report html"
+  },
+  "repository": "https://github.com/yoanm/async-response-aggregator-server.git",
+  "dependencies": {
+    "config": "^1.24.0",
+    "hapi": "^16.1.0",
+    "nested-error-stacks": "^2.0.0",
+    "request": "^2.79.0",
+    "request-promise-native": "^1.0.3",
+    "winston": "^2.3.1"
+  },
+  "bugs": {
+    "url": "https://github.com/yoanm/async-response-aggregator-server/issues"
+  },
+  "homepage": "https://github.com/yoanm/async-response-aggregator-server",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "chai": "^3.5.0",
+    "eslint": "^2.9.0",
+    "eslint-config-google": "^0.5.0",
+    "istanbul": "^1.0.0-alpha",
+    "mocha": "^3.1.2"
+  },
+  "main": "index.js"
+}
