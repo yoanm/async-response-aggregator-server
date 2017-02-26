@@ -19,7 +19,6 @@ const proxyquire = require('proxyquire').noPreserveCache();
 
 describe('client', () => {
     let client;
-    let NestedError = sinon.spy();
     let pkg;
 
     let requestOptionList;
@@ -31,7 +30,6 @@ describe('client', () => {
         requestOptionList = [];
         requestResolvedValue = null;
         requestRejectedValue = null;
-        NestedError.reset();
         pkg = {
             name: 'appName'
         };
@@ -43,7 +41,6 @@ describe('client', () => {
                 : Promise.reject(requestRejectedValue);
         };
         client = proxyquire('../../lib/client/index', {
-            'nested-error-stacks': NestedError,
             'request-promise-native': requestPromise,
             '../../package.json': pkg
         });

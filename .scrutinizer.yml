@@ -20,6 +20,7 @@ filter:
 build:
     environment:
          node: '6'
+         postgresql: false
     dependencies:
         before:
             - curl -o- -L https://yarnpkg.com/install.sh | bash
