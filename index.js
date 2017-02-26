@@ -24,14 +24,11 @@ onDeath(signal => {
     if (signal === 'SIGTERM' || signal === 'SIGQUIT') {
         exitCode = 1;
     }
-
-    console.log('ON_DEATH');
-
     cleanAndExit(exitCode);
 });
 
 process.on('unhandledRejection', (reason, p) => {
-    console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
+    console.warn('Unhandled Rejection at: Promise', p, 'reason:', reason);
 
     return cleanAndExit(1);
 });
