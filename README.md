@@ -32,6 +32,45 @@ Running at http://localhost:8000
 ## Documentation
 Swagger documentation is available at `/documentation`
 
+## Request options
+
+### Uri
+Endpoint URI
+
+ * **Required**
+ * Type: String
+ * Allowed schemes: `http`, `https`
+
+### Method
+Method to use
+
+ * Type: String
+ * Allowed Values: `GET`, `POST`, `PUT`, `DELETE`, `PATCH`
+ * Default Value: `GET`
+
+### Payload
+Payload to send (for `POST` request for instance)
+
+ * Type: `object`, `array`, `string`
+ * Default value: `null`
+
+### QueryString
+Query string to send (for `GET` request for instance)
+
+ * Type: `object`, `array`, `string`
+ * Default value: `null`
+
+### Headers
+Header to use
+
+ * Type: `object`
+
+### Json
+Whether to parse response as JSON or not
+
+ * Type: `boolean`
+ * Default value: `true`
+
 ## Body example
 
  * `GET` request with query string (`a=b&c[0]=1`) and custom headers (`{"plop": true}`) :  
@@ -74,44 +113,3 @@ Swagger documentation is available at `/documentation`
     }
 ]
 ```
-
-### Uri
-Endpoint URI
-
-Required: true
-Type: String
-Allowed schemes: `http`, `https`
-
-### Method
-Method to use
-
-Required: false
-Type: String
-Allowed Values: `GET`, `POST`, `PUT`, `DELETE`, `PATCH`
-Default Value: `GET`
-
-### Payload
-Payload to send (for `POST` request for instance)
-
-Required: false
-Type: `object`, `array`, `string`
-Default value: `null`
-
-### QueryString
-Query string to send (for `GET` request for instance)
-Required: false
-Type: `object`, `array`, `string`
-Default value: `null`
-
-### Headers
-Header to use
-
-Required: false
-Type: `object`
-
-### Json
-Whether to parse response as JSON
-
-Required: false
-Type: `boolean`
-Default value: `true`
