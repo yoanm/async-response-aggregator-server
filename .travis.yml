@@ -9,9 +9,8 @@ matrix:
   fast_finish: true
 
 before_install:
-  - (test -d $HOME/.yarn && echo "OK") || echo "KO"
-  - (test -d ~/.yarn && echo "OK") || echo "KO"
-  - test -d $HOME/.yarn || curl -o- -L https://yarnpkg.com/install.sh | bash
+  - rm -rf $HOME/.yarn
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
   # Export yarn and node binary paths
   - export PATH=$HOME/.yarn/bin:./node_modules/.bin/:$PATH
 
