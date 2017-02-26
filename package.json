@@ -1,7 +1,7 @@
 {
   "name": "async-response-aggregator-server",
   "description": "lightweight server to aggregate response from async requests",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": "Yoanm <yoanm@users.noreply.github.com>",
   "license": "GPL-3.0",
   "licenses": [
