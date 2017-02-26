@@ -63,7 +63,7 @@ describe('client', () => {
     });
 
     it('should use Request instance to create client request', () => {
-        const uri =  'uri';
+        const uri = 'uri';
         const method = 'method';
         const body = 'body';
         const qs = 'qs';

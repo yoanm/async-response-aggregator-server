@@ -1,4 +1,3 @@
-/* globals describe, beforeEach, it */
 "use strict";
 const Lab = require('lab');
 const lab = exports.lab = Lab.script();
@@ -8,7 +7,6 @@ const describe = lab.experiment;
 const beforeEach = lab.before;
 
 const chai = require("chai");
-const sinon = require('sinon');
 const chaiAsPromised = require("chai-as-promised");
 const Request = require('../../lib/model/Request');
 
@@ -24,7 +22,6 @@ describe('handlers - send', () => {
     let requestResolvedStack;
     let requestStack;
 
-
     beforeEach(done => {
         requestResolvedStack = [];
         requestStack = [];
@@ -37,7 +34,7 @@ describe('handlers - send', () => {
         handler = proxyquire('../../lib/handlers/send', {
             '../client': client
         });
-        
+
         done();
     });
 

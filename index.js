@@ -5,7 +5,7 @@ if (['dev', 'prod'].indexOf(process.env.NODE_ENV)) {
     process.env.NODE_ENV = 'dev';
 }
 
-const ON_DEATH = require('death')({
+const onDeath = require('death')({
     SIGTERM: false,
     SIGQUIT: false
 });
@@ -19,7 +19,7 @@ const NestedError = require('nested-error-stacks');
 const appName = pkg.name;
 const taskLogger = taskLoggerFactory(appName);
 
-ON_DEATH((signal, err) => {
+onDeath(signal => {
     let exitCode = 0;
     if (signal === 'SIGTERM' || signal === 'SIGQUIT') {
         exitCode = 1;
@@ -35,7 +35,6 @@ process.on('unhandledRejection', (reason, p) => {
 
     return cleanAndExit(1);
 });
-
 
 const cleanAndExit = (exitCode = 0) => {
     taskLogger.stopping();
@@ -53,11 +52,11 @@ const cleanAndExit = (exitCode = 0) => {
 
 taskLogger.starting();
 
-return server.start()
+server.start()
     .then(() => taskLogger.started())
     .catch(error => {
         const newError = new NestedError(`Exit ${appName} after an error at initialisation`, error);
-        logger.error(error.stack);
+        logger.error(newError.stack);
 
         return Promise.reject(cleanAndExit(1));
     });
