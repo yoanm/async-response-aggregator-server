@@ -23,7 +23,7 @@ build:
          postgresql: false
     dependencies:
         before:
-            - curl -o- -L https://yarnpkg.com/install.sh | bash
+            -  test -d ~/.yarn || curl -o- -L https://yarnpkg.com/install.sh | bash
             # Export yarn and node binary paths
             - export PATH=$HOME/.yarn/bin:./node_modules/.bin/:$PATH
         override:
