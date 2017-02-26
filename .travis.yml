@@ -9,7 +9,7 @@ matrix:
   fast_finish: true
 
 before_install:
-  - test -d $HOME/.yarn || curl -o- -L https://yarnpkg.com/install.sh | bash
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
   # Export yarn and node binary paths
   - export PATH=$HOME/.yarn/bin:./node_modules/.bin/:$PATH
 
@@ -19,6 +19,5 @@ script: npm test
 
 cache:
   directories:
-    - $HOME/.yarn
     - $HOME/.npm
     - node_modules
