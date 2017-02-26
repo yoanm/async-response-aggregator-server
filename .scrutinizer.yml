@@ -18,12 +18,17 @@ filter:
     excluded_paths:
         - test/*
 build:
+    cache:
+        directories:
+            - ~/.yarn
+            - ~/.npm
+            - node_modules
     environment:
          node: '6'
          postgresql: false
     dependencies:
         before:
-            -  test -d ~/.yarn || curl -o- -L https://yarnpkg.com/install.sh | bash
+            -  test -d $HOME/.yarn || curl -o- -L https://yarnpkg.com/install.sh | bash
             # Export yarn and node binary paths
             - export PATH=$HOME/.yarn/bin:./node_modules/.bin/:$PATH
         override:
