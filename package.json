@@ -11,18 +11,26 @@
   ],
   "scripts": {
     "start": "node index.js",
-    "test": "./node_modules/.bin/mocha --reporter spec",
-    "codestyle": "./node_modules/.bin/eslint -c .eslintrc.json .",
-    "coverage-clover": "./node_modules/.bin/babel-node ./node_modules/istanbul/lib/cli cover node_modules/mocha/bin/_mocha --report clover",
-    "coverage": "./node_modules/.bin/babel-node ./node_modules/istanbul/lib/cli cover node_modules/mocha/bin/_mocha --report html"
+    "test": "lab -C -v -R --shuffle",
+    "codestyle": "eslint -c .eslintrc.json .",
+    "coverage-clover": "npm run test -- -c -r clover -o build/coverage.clover.xml --coverage-path lib/",
+    "coverage": "npm run test -- -c -r html -o build/coverage.html --coverage-path lib/"
   },
   "repository": "https://github.com/yoanm/async-response-aggregator-server.git",
   "dependencies": {
     "config": "^1.24.0",
+    "death": "^1.1.0",
     "hapi": "^16.1.0",
+    "hapi-swagger": "^7.6.0",
+    "inert": "^4.1.0",
+    "make-error-cause": "^1.2.2",
+    "moment": "^2.17.1",
     "nested-error-stacks": "^2.0.0",
+    "proxyquire": "^1.7.11",
     "request": "^2.79.0",
     "request-promise-native": "^1.0.3",
+    "sinon": "^1.17.7",
+    "vision": "^4.1.1",
     "winston": "^2.3.1"
   },
   "bugs": {
@@ -32,10 +40,10 @@
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
     "eslint": "^2.9.0",
     "eslint-config-google": "^0.5.0",
-    "istanbul": "^1.0.0-alpha",
-    "mocha": "^3.1.2"
+    "lab": "^12.1.0"
   },
   "main": "index.js"
 }

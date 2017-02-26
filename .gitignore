@@ -11,4 +11,4 @@ log
 config/local.json
 
 # BUILD
-coverage
+build
