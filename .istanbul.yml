@@ -1,0 +1,19 @@
+verbose: false
+instrumentation:
+    root: lib
+    default-excludes: true
+    excludes: []
+    embed-source: false
+    variable: __coverage__
+    compact: true
+    preserve-comments: true
+    complete-copy: false
+    save-baseline: false
+    include-all-sources: true
+reporting:
+    print: summary
+    reports:
+        - lcov
+    dir: build
+    report-config:
+        clover: {file: clover.xml}

@@ -39,5 +39,5 @@ build:
             -
                 command: 'npm run coverage-clover'
                 coverage:
-                    file: 'build/coverage.clover.xml'
+                    file: 'build/clover.xml'
                     format: 'clover'
