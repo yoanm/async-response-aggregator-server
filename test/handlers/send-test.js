@@ -20,14 +20,14 @@ describe('handlers - send', () => {
     let client;
 
     let requestResolvedStack;
-    let requestStack;
+    let requestOptionListStack;
 
     beforeEach(done => {
         requestResolvedStack = [];
-        requestStack = [];
+        requestOptionListStack = [];
 
         client = request => {
-            requestStack.push(request);
+            requestOptionListStack.push(request);
 
             return Promise.resolve(requestResolvedStack.shift());
         };
@@ -46,7 +46,6 @@ describe('handlers - send', () => {
                 payload: 'payload',
                 queryString: 'queryString',
                 headers: 'headers',
-                form: 'form',
                 json: 'json'
             },
             {
@@ -55,7 +54,6 @@ describe('handlers - send', () => {
                 payload: 'payload2',
                 queryString: 'queryString2',
                 headers: 'headers2',
-                form: 'form2',
                 json: 'json2'
             }
         ];
@@ -64,7 +62,14 @@ describe('handlers - send', () => {
 
         return handler(new Request('plop', 'GET', payload))
             .then(responseList => {
-                expect(responseList).to.deep.equal(['response1', 'response2']);
+                expect(responseList).to.deep.equal(['response1', 'response2'], 'Bad response !');
+                expect(requestOptionListStack.length).to.equal(2, 'Bad request option list count !');
+                requestOptionListStack.forEach((requestOptionList, index) => {
+                    expect(requestOptionList).to.deep.equal(
+                        payload[index],
+                        `Bad request option list for request #${index} !`
+                    );
+                })
             });
     });
 });
