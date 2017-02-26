@@ -20,8 +20,8 @@ filter:
 build:
     cache:
         directories:
-            - ~/.yarn
-            - ~/.npm
+            - $HOME/.yarn
+            - $HOME/.npm
             - node_modules
     environment:
          node: '6'
