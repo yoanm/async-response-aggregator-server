@@ -69,7 +69,7 @@ describe('handlers - send', () => {
                         payload[index],
                         `Bad request option list for request #${index} !`
                     );
-                })
+                });
             });
     });
 });
