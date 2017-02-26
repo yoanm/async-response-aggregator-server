@@ -1,10 +1,5 @@
+/* globals describe, beforeEach, it */
 "use strict";
-const Lab = require('lab');
-const lab = exports.lab = Lab.script();
-
-const it = lab.test;
-const describe = lab.experiment;
-const beforeEach = lab.before;
 
 const chai = require("chai");
 const chaiAsPromised = require("chai-as-promised");

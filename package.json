@@ -12,10 +12,10 @@
   ],
   "scripts": {
     "start": "node index.js",
-    "test": "lab -C -v -R --shuffle",
+    "test": "mocha --recursive --reporter spec",
     "codestyle": "eslint -c .eslintrc.json .",
-    "coverage-clover": "npm run test -- -c -r clover -o build/coverage.clover.xml",
-    "coverage": "npm run test -- -c -r html -o build/coverage.html"
+    "coverage-clover": "babel-node ./node_modules/istanbul/lib/cli cover --report clover node_modules/.bin/_mocha -- --recursive",
+    "coverage": "babel-node ./node_modules/istanbul/lib/cli cover --report html node_modules/.bin/_mocha -- --recursive"
   },
   "repository": "https://github.com/yoanm/async-response-aggregator-server.git",
   "dependencies": {
@@ -36,13 +36,14 @@
   },
   "homepage": "https://github.com/yoanm/async-response-aggregator-server",
   "devDependencies": {
+    "babel-cli": "^6.23.0",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "eslint": "^2.9.0",
     "eslint-config-google": "^0.5.0",
-    "lab": "^12.1.0",
-    "proxyquire": "^1.7.11",
-    "sinon": "^1.17.7"
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "proxyquire": "^1.7.11"
   },
   "main": "index.js"
 }
