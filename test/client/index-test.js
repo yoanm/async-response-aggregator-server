@@ -7,7 +7,6 @@ const describe = lab.experiment;
 const beforeEach = lab.before;
 
 const chai = require("chai");
-const sinon = require('sinon');
 const chaiAsPromised = require("chai-as-promised");
 const Request = require('../../lib/model/Request');
 const Response = require('../../lib/model/Response');
