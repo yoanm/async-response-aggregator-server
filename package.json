@@ -13,8 +13,8 @@
     "start": "node index.js",
     "test": "lab -C -v -R --shuffle",
     "codestyle": "eslint -c .eslintrc.json .",
-    "coverage-clover": "npm run test -- -c -r clover -o build/coverage.clover.xml --coverage-path lib/",
-    "coverage": "npm run test -- -c -r html -o build/coverage.html --coverage-path lib/"
+    "coverage-clover": "npm run test -- -c -r clover -o build/coverage.clover.xml",
+    "coverage": "npm run test -- -c -r html -o build/coverage.html"
   },
   "repository": "https://github.com/yoanm/async-response-aggregator-server.git",
   "dependencies": {
