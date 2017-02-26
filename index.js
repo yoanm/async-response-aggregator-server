@@ -1,6 +1,6 @@
 "use strict";
 
-if (['dev', 'prod'].indexOf(process.env.NODE_ENV)) {
+if (['dev', 'prod'].indexOf(process.env.NODE_ENV) < 0) {
     console.warn(`Undefined node environment "${process.env.NODE_ENV}", fallback to dev !`);
     process.env.NODE_ENV = 'dev';
 }
@@ -25,12 +25,6 @@ onDeath(signal => {
         exitCode = 1;
     }
     cleanAndExit(exitCode);
-});
-
-process.on('unhandledRejection', (reason, p) => {
-    console.warn('Unhandled Rejection at: Promise', p, 'reason:', reason);
-
-    return cleanAndExit(1);
 });
 
 const cleanAndExit = (exitCode = 0) => {

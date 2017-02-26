@@ -64,7 +64,6 @@ describe('client', () => {
         const body = 'body';
         const qs = 'qs';
         const headers = {custom: 'headers'};
-        const form = 'form';
         const json = false;
 
         requestResolvedValue = {
@@ -73,15 +72,14 @@ describe('client', () => {
             headers: 'headers'
         };
 
-        return client(new Request(uri, method, body, qs, headers, form, json))
+        return client(new Request(uri, method, body, qs, headers, json))
             .then(() => {
-                expect(requestOptionList.uri).to.equal(uri);
-                expect(requestOptionList.method).to.equal(method);
-                expect(requestOptionList.headers).to.contain(headers);
-                expect(requestOptionList.json).to.equal(json);
-                expect(requestOptionList.body).to.equal(body);
-                expect(requestOptionList.form).to.equal(form);
-                expect(requestOptionList.qs).to.equal(qs);
+                expect(requestOptionList.uri).to.equal(uri, 'Bad uri !');
+                expect(requestOptionList.method).to.equal(method, 'Bad method !');
+                expect(requestOptionList.headers).to.contain(headers, 'Bad headers !');
+                expect(requestOptionList.json).to.equal(json, 'Bad json !');
+                expect(requestOptionList.body).to.equal(body, 'Bad body !');
+                expect(requestOptionList.qs).to.equal(qs, 'Bad qs !');
             });
     });
 
@@ -96,13 +94,12 @@ describe('client', () => {
                 headers: 'headers'
             };
 
-            return client(new Request(uri, method, {}, {}, {}, {}, json))
+            return client(new Request(uri, method, {}, {}, {}, json))
                 .then(() => {
-                    expect(requestOptionList.headers).to.deep.equal({'User-Agent': pkg.name});
-                    expect(requestOptionList.json).to.equal(json);
-                    expect(requestOptionList.body).to.equal('');
-                    expect(requestOptionList.form).to.equal(undefined);
-                    expect(requestOptionList.qs).to.equal(null);
+                    expect(requestOptionList.headers).to.deep.equal({'User-Agent': pkg.name}, 'Bad headers !');
+                    expect(requestOptionList.json).to.equal(json, 'Bad json !');
+                    expect(requestOptionList.body).to.equal('', 'Bad body !');
+                    expect(requestOptionList.qs).to.equal(null, 'Bad qs !');
                 });
         });
 
@@ -116,10 +113,10 @@ describe('client', () => {
                 headers: 'headers'
             };
 
-            return client(new Request(uri, method, {}, {}, {}, {}, json))
+            return client(new Request(uri, method, {}, {}, {}, json))
                 .then(() => {
-                    expect(requestOptionList.body).to.deep.equal({});
-                    expect(requestOptionList.qs).to.deep.equal({});
+                    expect(requestOptionList.body).to.deep.equal({}, 'Bad body !');
+                    expect(requestOptionList.qs).to.deep.equal({}, 'Bad qs !');
                 });
         });
     });
@@ -134,10 +131,10 @@ describe('client', () => {
 
             return client(new Request('uri'))
                 .then(response => {
-                    expect(response).to.be.instanceOf(Response);
-                    expect(response.getBody()).to.equal(requestResolvedValue.body);
-                    expect(response.getStatusCode()).to.equal(requestResolvedValue.statusCode);
-                    expect(response.getHeaders()).to.equal(requestResolvedValue.headers);
+                    expect(response).to.be.instanceOf(Response, 'Bad instance !');
+                    expect(response.getBody()).to.equal(requestResolvedValue.body, 'Bad Body !');
+                    expect(response.getStatusCode()).to.equal(requestResolvedValue.statusCode, 'Bad StatusCode !');
+                    expect(response.getHeaders()).to.equal(requestResolvedValue.headers, 'Bad Headers !');
                 });
         });
         describe('transform an on error client response', () => {
@@ -149,11 +146,12 @@ describe('client', () => {
                     message: 'message'
                 };
 
-                return client(new Request('uri', 'GET', {}, {}, {}, {}, false))
+                return client(new Request('uri', 'GET', {}, {}, {}, false))
                     .then(response => {
-                        expect(response).to.be.instanceOf(Response);
+                        expect(response).to.be.instanceOf(Response, 'Bad instance !');
                         expect(response.getBody()).to.equal(
-                            `${requestRejectedValue.error.code} ${requestRejectedValue.message}`
+                            `${requestRejectedValue.error.code} ${requestRejectedValue.message}`,
+                            'Bad Body !'
                         );
                     });
             });
@@ -166,13 +164,16 @@ describe('client', () => {
                     message: 'message'
                 };
 
-                return client(new Request('uri', 'GET', {}, {}, {}, {}, true))
+                return client(new Request('uri', 'GET', {}, {}, {}, true))
                     .then(response => {
-                        expect(response).to.be.instanceOf(Response);
-                        expect(response.getBody()).to.deep.equal({
-                            error: requestRejectedValue.error.code,
-                            message: requestRejectedValue.message
-                        });
+                        expect(response).to.be.instanceOf(Response, 'Bad instance');
+                        expect(response.getBody()).to.deep.equal(
+                            {
+                                error: requestRejectedValue.error.code,
+                                message: requestRejectedValue.message
+                            },
+                            'Bad body !'
+                        );
                     });
             });
         });
