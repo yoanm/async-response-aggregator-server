@@ -1,0 +1,11 @@
+{
+  "debug": false,
+  "logger": {
+    "path": "log",
+    "level": "info"
+  },
+  "server": {
+    "host": "localhost",
+    "port": 8000
+  }
+}

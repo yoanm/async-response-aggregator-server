@@ -4,6 +4,7 @@
   },
   "extends": "google",
   "rules": {
+    "no-use-before-define": 0,
     "indent": [2,4, { "SwitchCase": 1 }],
     "camelcase": ["error"],
     "max-len": [1, 121],
@@ -17,6 +18,7 @@
     }]
   },
   "env": {
-    "node": true
+    "node": true,
+    "es6": true
   }
 }
